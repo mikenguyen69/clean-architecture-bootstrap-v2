@@ -17,6 +17,7 @@ using AutoMapper;
 using StructureMap;
 using Microsoft.EntityFrameworkCore;
 using CleanArchitectureV2.Api.Mappers;
+using CleanArchitectureV2.Infrastructure.DomainEvents;
 
 namespace CleanArchitectureV2.Api
 {
@@ -52,7 +53,7 @@ namespace CleanArchitectureV2.Api
             });
 
             services.AddSingleton<IMapper>(_ => AutoMapperConfig.GetMapper());
-
+            //services.AddScoped<IDomainEventDispatcher, DomainDeventDeparcher>
             var container = new Container();
 
             container.Configure(config =>
@@ -70,6 +71,7 @@ namespace CleanArchitectureV2.Api
 
                 // TODO: Move to Infrastucture Registry
                 config.For(typeof(IRepository<>)).Add(typeof(EfRepository<>));
+                config.For(typeof(IDomainEventDispatcher)).Add(typeof(DomainEventDispatcher));
 
                 //Populate the container using the service collection
                 config.Populate(services);
