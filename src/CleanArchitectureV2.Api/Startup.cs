@@ -18,6 +18,7 @@ using StructureMap;
 using Microsoft.EntityFrameworkCore;
 using CleanArchitectureV2.Api.Mappers;
 using CleanArchitectureV2.Infrastructure.DomainEvents;
+using CleanArchitectureV2.Api.Models;
 
 namespace CleanArchitectureV2.Api
 {
@@ -85,7 +86,7 @@ namespace CleanArchitectureV2.Api
             ILoggerFactory loggerFactory)
         {
             this.Configure(app, env, loggerFactory);
-            //SeedData.PopulateTestData(app.ApplicationServices.GetService<AppDbContext>());
+            SeedData.EnsurePopulated(app.ApplicationServices.GetService<AppDbContext>());
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
