@@ -54,7 +54,7 @@ namespace CleanArchitectureV2.Api
             });
 
             services.AddSingleton<IMapper>(_ => AutoMapperConfig.GetMapper());
-            //services.AddScoped<IDomainEventDispatcher, DomainDeventDeparcher>
+            //services.AddScoped<IDomainEventDispatcher, DomainDeventDeparcher>();
             var container = new Container();
 
             container.Configure(config =>
