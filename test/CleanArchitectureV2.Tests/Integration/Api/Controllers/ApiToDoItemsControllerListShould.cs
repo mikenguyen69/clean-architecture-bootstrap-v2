@@ -10,7 +10,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CleanArchitectureV2.Tests.Integration.Web.Controllers
+namespace CleanArchitectureV2.Tests.Integration.Api.Controllers
 {
 
     public class ApiToDoItemsControllerList : BaseWebTest

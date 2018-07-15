@@ -10,7 +10,7 @@ using System.IO;
 using System.Net.Http;
 using System.Reflection;
 
-namespace CleanArchitectureV2.Tests.Integration.Web
+namespace CleanArchitectureV2.Tests.Integration.Api
 {
     public abstract class BaseWebTest
     {
