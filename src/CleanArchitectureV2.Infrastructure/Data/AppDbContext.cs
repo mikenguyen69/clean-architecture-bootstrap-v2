@@ -1,4 +1,5 @@
-﻿using CleanArchitectureV2.Core.Entities;
+﻿using CleanArchictectureV2.Core.Entities;
+using CleanArchitectureV2.Core.Entities;
 using CleanArchitectureV2.Core.Interfaces;
 using CleanArchitectureV2.Core.SharedKernel;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ namespace CleanArchitectureV2.Infrastructure.Data
         }
 
         public DbSet<ToDoItem> ToDoItems { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public override int SaveChanges()
         {
