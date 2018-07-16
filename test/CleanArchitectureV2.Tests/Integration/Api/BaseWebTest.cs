@@ -1,18 +1,22 @@
 ﻿using CleanArchitectureV2.Api;
+using CleanArchitectureV2.Core.SharedKernel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace CleanArchitectureV2.Tests.Integration.Api
 {
-    public abstract class BaseWebTest
+    public abstract class BaseWebTest<T> where T : BaseEntity
     {
         protected readonly HttpClient _client;
         public BaseWebTest()
@@ -87,5 +91,12 @@ namespace CleanArchitectureV2.Tests.Integration.Api
             throw new Exception($"Solution root could not be located using application root {applicationBasePath}.");
         }
 
+        protected async Task<IEnumerable<T>> GetResult(string apiUrl)
+        {
+            var response = await _client.GetAsync(apiUrl);
+            response.EnsureSuccessStatusCode();
+            var stringResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<IEnumerable<T>>(stringResponse);
+        }
     }
 }

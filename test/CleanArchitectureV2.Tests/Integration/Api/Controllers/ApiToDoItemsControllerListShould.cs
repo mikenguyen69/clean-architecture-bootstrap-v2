@@ -13,15 +13,12 @@ using Xunit;
 namespace CleanArchitectureV2.Tests.Integration.Api.Controllers
 {
 
-    public class ApiToDoItemsControllerList : BaseWebTest
+    public class ApiToDoItemsControllerList : BaseWebTest<ToDoItem>
     {
         [Fact]
         public async Task ReturnsTwoItems()
         {
-            var response = await _client.GetAsync("/api/todoitems");
-            response.EnsureSuccessStatusCode();
-            var stringResponse = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<IEnumerable<ToDoItem>>(stringResponse).ToList();
+            var result = (await GetResult("/api/todoitems")).ToList();
 
             Assert.Equal(2, result.Count());
             Assert.Equal(1, result.Count(a => a.Title == "Test Item 1"));

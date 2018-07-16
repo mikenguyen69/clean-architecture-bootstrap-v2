@@ -53,6 +53,8 @@ namespace CleanArchitectureV2.Api.Models
                         Price = 0
                     }
                 );
+
+                context.SaveChanges();
             }
         }
     }
