@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchictectureV2.Core", "src\CleanArchictectureV2.Core\CleanArchictectureV2.Core.csproj", "{2E6D690F-4584-4E7C-8FA1-65087556010F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureV2.Core", "src\CleanArchictectureV2.Core\CleanArchitectureV2.Core.csproj", "{2E6D690F-4584-4E7C-8FA1-65087556010F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureV2.Infrastructure", "src\CleanArchitectureV2.Infrastructure\CleanArchitectureV2.Infrastructure.csproj", "{F9952C30-4606-4B2B-A0B5-534B5BD998DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureV2.Infrastructure", "src\CleanArchitectureV2.Infrastructure\CleanArchitectureV2.Infrastructure.csproj", "{F9952C30-4606-4B2B-A0B5-534B5BD998DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureV2.Api", "src\CleanArchitectureV2.Api\CleanArchitectureV2.Api.csproj", "{BF2F5D2D-03F6-4FFB-8E82-89AB88CEFB13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureV2.Api", "src\CleanArchitectureV2.Api\CleanArchitectureV2.Api.csproj", "{BF2F5D2D-03F6-4FFB-8E82-89AB88CEFB13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureV2.Web", "src\CleanArchitectureV2.Web\CleanArchitectureV2.Web.csproj", "{D7CC65B2-8659-45BC-9E5F-CACE209A6D71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureV2.Web", "src\CleanArchitectureV2.Web\CleanArchitectureV2.Web.csproj", "{D7CC65B2-8659-45BC-9E5F-CACE209A6D71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureV2.Tests", "test\CleanArchitectureV2.Tests\CleanArchitectureV2.Tests.csproj", "{FA05AB57-DC68-441F-A152-D5408CEA5107}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureV2.Tests", "test\CleanArchitectureV2.Tests\CleanArchitectureV2.Tests.csproj", "{FA05AB57-DC68-441F-A152-D5408CEA5107}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CleanArchictectureV2.Core\CleanArchictectureV2.Core.csproj" />
+    <ProjectReference Include="..\..\src\CleanArchictectureV2.Core\CleanArchitectureV2.Core.csproj" />
     <ProjectReference Include="..\..\src\CleanArchitectureV2.Api\CleanArchitectureV2.Api.csproj" />
     <ProjectReference Include="..\..\src\CleanArchitectureV2.Infrastructure\CleanArchitectureV2.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\CleanArchitectureV2.Web\CleanArchitectureV2.Web.csproj" />

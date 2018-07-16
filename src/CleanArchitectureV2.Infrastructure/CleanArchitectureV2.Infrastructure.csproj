@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CleanArchictectureV2.Core\CleanArchictectureV2.Core.csproj" />
+    <ProjectReference Include="..\CleanArchictectureV2.Core\CleanArchitectureV2.Core.csproj" />
   </ItemGroup>
 
 </Project>

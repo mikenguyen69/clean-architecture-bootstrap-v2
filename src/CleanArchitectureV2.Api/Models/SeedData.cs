@@ -34,6 +34,26 @@ namespace CleanArchitectureV2.Api.Models
 
                 context.SaveChanges();
             }
+
+            if (!context.Products.Any())
+            {
+                context.Products.AddRange(
+                    new Product
+                    {
+                        Id = 1, 
+                        Name = "Test Product 1",
+                        Category = "Testing",
+                        Price=0
+                    }
+                    , new Product
+                    {
+                        Id = 2,
+                        Name = "Test Product 2",
+                        Category = "Testing",
+                        Price = 0
+                    }
+                );
+            }
         }
     }
 }

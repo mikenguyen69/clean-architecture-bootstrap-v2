@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Xunit;
 using System.Linq;
 using CleanArchitectureV2.Core.Entities;
-using CleanArchictectureV2.Core.Entities;
 
 namespace CleanArchitectureV2.Tests.Integration.Data
 {

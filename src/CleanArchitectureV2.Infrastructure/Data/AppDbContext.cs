@@ -1,5 +1,4 @@
-﻿using CleanArchictectureV2.Core.Entities;
-using CleanArchitectureV2.Core.Entities;
+﻿using CleanArchitectureV2.Core.Entities;
 using CleanArchitectureV2.Core.Interfaces;
 using CleanArchitectureV2.Core.SharedKernel;
 using Microsoft.EntityFrameworkCore;
