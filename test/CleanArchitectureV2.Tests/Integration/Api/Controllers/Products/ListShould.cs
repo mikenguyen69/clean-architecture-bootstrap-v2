@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Xunit;
 using System.Linq;
 
-namespace CleanArchitectureV2.Tests.Integration.Api.Controllers
+namespace CleanArchitectureV2.Tests.Integration.Api.Controllers.Products
 {
-    public class ApiProductsControllerListShould : BaseWebTest<Product>
+    public class ListShould : BaseAction<Product>
     {
         [Fact]
         public async Task ReturnsTwoItems()

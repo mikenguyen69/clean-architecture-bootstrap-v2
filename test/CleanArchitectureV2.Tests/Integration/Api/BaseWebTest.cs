@@ -16,10 +16,10 @@ using System.Threading.Tasks;
 
 namespace CleanArchitectureV2.Tests.Integration.Api
 {
-    public abstract class BaseWebTest<T> where T : BaseEntity
+    public abstract class BaseAction<T> where T : BaseEntity
     {
         protected readonly HttpClient _client;
-        public BaseWebTest()
+        public BaseAction()
         {
             _client = GetClient();
         }
@@ -97,6 +97,15 @@ namespace CleanArchitectureV2.Tests.Integration.Api
             response.EnsureSuccessStatusCode();
             var stringResponse = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<IEnumerable<T>>(stringResponse);
+        }
+
+        protected async Task<T> GetSingleResult(string apiUrl)
+        {
+            var response = await _client.GetAsync(apiUrl);
+            response.EnsureSuccessStatusCode();
+            var stringResponse = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<T>(stringResponse);
         }
     }
 }
