@@ -24,13 +24,12 @@ namespace CleanArchitectureV2.Tests.Integration.Api.Controllers.ToDoItems
 
             var response = await _client.PostAsync($"/api/todoitems", GetPayLoad(todoItemDto));
             response.EnsureSuccessStatusCode();
+            
+            // test if the item 3 was added correctly
+            var result = (await GetSingleResult($"/api/todoitems/{todoItemDto.Id}"));
 
-            response.StatusCode.Should().BeEquivalentTo(HttpStatusCode.Created);
-
-            var result = await response.Content.ReadAsStringAsync();
-            todoItemDto = JsonConvert.DeserializeObject<ToDoItemDTO>(result);
-
-            response.Headers.Location.ToString().Should().BeEquivalentTo($"/api/todoitems/{todoItemDto.Id}");
+            Assert.NotNull(result);
+            Assert.Equal("Test Item 3", result.Title);
 
         }
     }

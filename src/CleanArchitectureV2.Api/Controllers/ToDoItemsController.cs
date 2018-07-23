@@ -47,6 +47,12 @@ namespace CASportStore.Web.Api.Controllers
                 Title = item.Title,
                 Description = item.Description
             };
+
+            if (item.Id > 0)
+            {
+                todoItem.Id = item.Id;
+            }
+
             _todoRepository.Add(todoItem);
             return Ok(_mapper.Map<ToDoItem, ToDoItemDTO>(todoItem));
         }
