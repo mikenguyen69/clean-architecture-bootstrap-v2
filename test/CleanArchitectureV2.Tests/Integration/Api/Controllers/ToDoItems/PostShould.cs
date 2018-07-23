@@ -1,7 +1,11 @@
-﻿using CleanArchitectureV2.Core.Entities;
+﻿using CleanArchitectureV2.Api.DTO;
+using CleanArchitectureV2.Core.Entities;
 using System;
+using System.Net;
 using System.Threading.Tasks;
 using Xunit;
+using FluentAssertions;
+using Newtonsoft.Json;
 
 namespace CleanArchitectureV2.Tests.Integration.Api.Controllers.ToDoItems
 {
@@ -11,12 +15,23 @@ namespace CleanArchitectureV2.Tests.Integration.Api.Controllers.ToDoItems
         [Fact]
         public async Task AddNewItem()
         {
-            //var result = (await GetResult("/api/todoitems")).ToList();
+            var todoItemDto = new ToDoItemDTO()
+            {
+                Id = 3,
+                Title = "Test Item 3",
+                Description = "This is item 3 testing only",               
+            };
 
-            //Assert.Equal(2, result.Count());
-            //Assert.Equal(1, result.Count(a => a.Title == "Test Item 1"));
-            //Assert.Equal(1, result.Count(a => a.Title == "Test Item 2"));
-            throw new Exception("Not implemented");
+            var response = await _client.PostAsync($"/api/todoitems", GetPayLoad(todoItemDto));
+            response.EnsureSuccessStatusCode();
+
+            response.StatusCode.Should().BeEquivalentTo(HttpStatusCode.Created);
+
+            var result = await response.Content.ReadAsStringAsync();
+            todoItemDto = JsonConvert.DeserializeObject<ToDoItemDTO>(result);
+
+            response.Headers.Location.ToString().Should().BeEquivalentTo($"/api/todoitems/{todoItemDto.Id}");
+
         }
     }
 }

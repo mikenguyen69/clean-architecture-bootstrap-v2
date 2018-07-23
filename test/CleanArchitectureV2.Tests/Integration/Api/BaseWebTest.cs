@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace CleanArchitectureV2.Tests.Integration.Api
@@ -106,6 +107,13 @@ namespace CleanArchitectureV2.Tests.Integration.Api
             var stringResponse = await response.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<T>(stringResponse);
+        }
+
+        protected static StringContent GetPayLoad(object data)
+        {
+            var json = JsonConvert.SerializeObject(data);
+
+            return new StringContent(json, Encoding.UTF8, "application/json");
         }
     }
 }
