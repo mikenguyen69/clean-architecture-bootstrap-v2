@@ -18,7 +18,7 @@ namespace CleanArchitectureV2.Tests.Integration.Api.Controllers.ToDoItems
             var todoItemDto = new ToDoItemDTO()
             {
                 Id = 3,
-                Title = "Test Item 3",
+                Title = "Test 3",
                 Description = "This is item 3 testing only",               
             };
 
@@ -29,7 +29,7 @@ namespace CleanArchitectureV2.Tests.Integration.Api.Controllers.ToDoItems
             var result = (await GetSingleResult($"/api/todoitems/{todoItemDto.Id}"));
 
             Assert.NotNull(result);
-            Assert.Equal("Test Item 3", result.Title);
+            Assert.Equal("Test 3", result.Title);
 
         }
     }
