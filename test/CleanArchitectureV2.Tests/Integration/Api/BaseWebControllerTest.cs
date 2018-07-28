@@ -17,10 +17,10 @@ using System.Threading.Tasks;
 
 namespace CleanArchitectureV2.Tests.Integration.Api
 {
-    public abstract class BaseAction<T> where T : BaseEntity
+    public abstract class BaseWebControllerTest<T> where T : BaseEntity
     {
         protected readonly HttpClient _client;
-        public BaseAction()
+        public BaseWebControllerTest()
         {
             _client = GetClient();
         }
@@ -92,17 +92,33 @@ namespace CleanArchitectureV2.Tests.Integration.Api
             throw new Exception($"Solution root could not be located using application root {applicationBasePath}.");
         }
 
-        protected async Task<IEnumerable<T>> GetResult(string apiUrl)
+        protected async Task<IEnumerable<T>> GetList(string url)
         {
-            var response = await _client.GetAsync(apiUrl);
+            var response = await _client.GetAsync(url);
             response.EnsureSuccessStatusCode();
             var stringResponse = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<IEnumerable<T>>(stringResponse);
         }
 
-        protected async Task<T> GetSingleResult(string apiUrl)
+        protected async Task<T> GetById(string url)
         {
-            var response = await _client.GetAsync(apiUrl);
+            var response = await _client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            var stringResponse = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<T>(stringResponse);
+        }
+
+        protected async Task Post(string url, object obj)
+        {
+            var response = await _client.PostAsync(url, GetPayLoad(obj));
+            response.EnsureSuccessStatusCode();
+            //var stringResponse = await response.Content.ReadAsStringAsync();            
+        }
+
+        protected async Task<T> Patch(string url, object obj)
+        {
+            var response = await _client.PatchAsync(url, GetPayLoad(obj));
             response.EnsureSuccessStatusCode();
             var stringResponse = await response.Content.ReadAsStringAsync();
 
