@@ -48,5 +48,27 @@ namespace CleanArchitectureV2.Tests.Integration.Api
             Assert.Equal("Test 3", result.Title);
 
         }
+
+        [Fact]
+        public async Task CompleteShouldMarkItemToBeDone()
+        {
+            var result = await GetById("/api/todoitems/1/complete");
+
+            Assert.NotNull(result);
+            Assert.Equal("Test Item 1", result.Title);
+            Assert.True(result.IsDone);
+        }
+
+        [Fact]
+        public async Task CompleteByPatchShouldAlsoMarkItemToBeDone()
+        {
+            var result = await GetById("api/todoitems/1");
+            
+            var response = await Patch("/api/todoitems/complete", result);
+
+            Assert.Equal(response.Id, result.Id);
+            Assert.Equal(response.Title, result.Title);
+            Assert.True(response.IsDone);
+        }
     }
 }

@@ -57,7 +57,7 @@ namespace CASportStore.Web.Api.Controllers
             return Ok(_mapper.Map<ToDoItem, ToDoItemDTO>(todoItem));
         }
 
-        [HttpPatch("{id:int}/complete")]
+        [HttpGet("{id:int}/complete")]
         public IActionResult Complete(int id)
         {
             var toDoItem = _todoRepository.GetById(id);
@@ -65,6 +65,16 @@ namespace CASportStore.Web.Api.Controllers
             _todoRepository.Update(toDoItem);
 
             return Ok(_mapper.Map<ToDoItem, ToDoItemDTO>(toDoItem));
+        }
+
+        [HttpPatch("complete")]
+        public IActionResult Complete([FromBody] ToDoItemDTO itemDTO)
+        {
+            var item = _mapper.Map<ToDoItemDTO, ToDoItem>(itemDTO);
+            item.MarkComplete();
+            _todoRepository.Update(item);
+
+            return Ok(_mapper.Map<ToDoItem, ToDoItemDTO>(item));
         }
     }
 }
