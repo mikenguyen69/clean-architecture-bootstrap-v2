@@ -20,11 +20,11 @@ namespace CleanArchitectureV2.Tests.Integration.Api
     public abstract class BaseWebControllerTest<T> where T : BaseEntity
     {
         protected readonly HttpClient _client;
+
         public BaseWebControllerTest()
         {
             _client = GetClient();
         }
-
 
         protected HttpClient GetClient()
         {
@@ -32,9 +32,9 @@ namespace CleanArchitectureV2.Tests.Integration.Api
             var contentRoot = GetProjectPath("src", startupAssembly);
             var builder = new WebHostBuilder()
                 .UseContentRoot(contentRoot)
-                .ConfigureServices(InitializeServices)
+                .ConfigureServices(InitalizeServices)
                 .UseStartup<Startup>()
-                .UseEnvironment("Testing"); // ensure ConfigureTesting is called in Startup
+                .UseEnvironment("Testing");
 
             var server = new TestServer(builder);
             var client = server.CreateClient();
@@ -42,7 +42,7 @@ namespace CleanArchitectureV2.Tests.Integration.Api
             return client;
         }
 
-        protected virtual void InitializeServices(IServiceCollection services)
+        protected virtual void InitalizeServices(IServiceCollection services)
         {
             var startupAssembly = typeof(Startup).GetTypeInfo().Assembly;
 
@@ -79,10 +79,13 @@ namespace CleanArchitectureV2.Tests.Integration.Api
             var directoryInfo = new DirectoryInfo(applicationBasePath);
             do
             {
-                var solutionFileInfo = new FileInfo(Path.Combine(directoryInfo.FullName, "CleanArchitectureV2.sln"));
+                var solutionFileInfo = new FileInfo(Path.Combine(directoryInfo.FullName,
+                    "CleanArchitectureV2.sln"));
                 if (solutionFileInfo.Exists)
                 {
-                    return Path.GetFullPath(Path.Combine(directoryInfo.FullName, solutionRelativePath, projectName));
+                    return
+                        Path.GetFullPath(Path.Combine(directoryInfo.FullName,
+                        solutionRelativePath, projectName));
                 }
 
                 directoryInfo = directoryInfo.Parent;
@@ -113,22 +116,21 @@ namespace CleanArchitectureV2.Tests.Integration.Api
         {
             var response = await _client.PostAsync(url, GetPayLoad(obj));
             response.EnsureSuccessStatusCode();
-            //var stringResponse = await response.Content.ReadAsStringAsync();            
         }
 
         protected async Task<T> Patch(string url, object obj)
         {
             var response = await _client.PatchAsync(url, GetPayLoad(obj));
+
             response.EnsureSuccessStatusCode();
             var stringResponse = await response.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<T>(stringResponse);
         }
 
-        protected static StringContent GetPayLoad(object data)
+        protected HttpContent GetPayLoad(object data)
         {
             var json = JsonConvert.SerializeObject(data);
-
             return new StringContent(json, Encoding.UTF8, "application/json");
         }
     }
